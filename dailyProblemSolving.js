@@ -168,3 +168,76 @@ var numIdenticalPairs = function(nums) {
 };
 
 
+
+
+
+
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+var leftRightDifference = function(nums) {
+ 
+    var rightArr=[];
+     var rightArr1=[];
+     var rightrev=[];
+     var leftArr=[];
+     var leftnew=0;
+     var totalsum=[];
+     var result=[];
+    for(var i=0;i<nums.length;i++)
+     {
+       
+        rightArr[i]=nums[i];
+        rightArr.push(0);
+       
+    }
+    //  console.log(rightArr);
+     var rightnew=0;
+     for(var i=rightArr.length-1;i>1;i--)
+     {
+        rightArr[i]=rightnew;
+        rightnew=rightArr[i]+rightArr[i-1];
+     
+        // console.log(rightnew);
+       
+       rightArr1.push(rightnew);
+
+      }
+    //    console.log(rightArr1);
+       for(var i=rightArr1.length-1;i>=0;i--)
+       {
+           rightrev.push(rightArr1[i]);
+       }
+
+   
+     
+     rightrev.push(0);
+     console.log("rightsum :"+rightrev);
+      nums.splice(0,0,0);
+      //console.log(nums);
+     for(var i=0;i<nums.length-2;i++)
+     {
+         nums[i]=leftnew;
+         leftnew=nums[i]+nums[i+1];
+         
+          leftArr.push(leftnew)
+     }
+     
+ 
+    leftArr.splice(0,0,0);
+      console.log(leftArr);
+      for(var i=0;i<leftArr.length;i++)
+      {
+    for(var j=i;j<rightrev.length;j++)
+    {
+        totalsum[i]=leftArr[i]-rightrev[j];
+        break;
+       
+    }
+   
+result[i]=Math.abs(totalsum[i]);
+ console.log(result[i]);
+      }
+      return result;
+};
